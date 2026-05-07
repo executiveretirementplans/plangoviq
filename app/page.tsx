@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { getServerSession } from 'next-auth/next'
 import { authOptions, isAdmin } from '@/lib/auth'
-import { SignOutOverlay } from '@/components/SignOutOverlay'
+import { TopBar } from '@/components/TopBar'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,15 +19,15 @@ export default async function Home() {
   const html = getLandingHtml()
 
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100%' }}>
+      <TopBar
+        userEmail={session?.user?.email ?? undefined}
+        admin={isAdmin(session?.user?.email)}
+      />
       <iframe
         srcDoc={html}
         title="Plan Governance"
-        style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-      />
-      <SignOutOverlay
-        userEmail={session?.user?.email ?? undefined}
-        admin={isAdmin(session?.user?.email)}
+        style={{ flex: 1, width: '100%', border: 'none', display: 'block' }}
       />
     </div>
   )
