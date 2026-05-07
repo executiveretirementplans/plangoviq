@@ -1,0 +1,2666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Private Equity Retirement Strategy: Driving EBITDA Stability Through Centralized Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --royal-blue: #003366;
+    --royal-blue-light: #0a5299;
+    --royal-blue-lighter: #1a6bb5;
+    --navy-dark: #001d3d;
+    --slate-50: #f8f9fb;
+    --slate-100: #f0f2f5;
+    --slate-200: #e2e6ec;
+    --slate-300: #ccd3dc;
+    --slate-500: #5a6578;
+    --slate-700: #374151;
+    --slate-900: #1a1a2e;
+    --success: #059669;
+    --success-light: #d1fae5;
+    --warning: #f59e0b;
+    --destructive: #dc3545;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--slate-900);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Sticky Nav ===== */
+  .sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(0, 51, 102, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 50;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .nav-top:hover { color: white; }
+  .nav-items {
+    display: none;
+    gap: 4px;
+  }
+  @media (min-width: 768px) {
+    .nav-items { display: flex; }
+  }
+  .nav-item {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .nav-item:hover { color: white; background: rgba(255,255,255,0.1); }
+  .nav-item.active { color: white; background: rgba(255,255,255,0.2); }
+
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    background: var(--royal-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 60;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .mobile-toggle.visible { opacity: 1; }
+  @media (min-width: 768px) { .mobile-toggle { display: none; } }
+  .mobile-panel {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 29, 61, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 55;
+    display: none;
+  }
+  .mobile-panel.open { display: block; }
+  .mobile-panel-inner {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 280px;
+    background: var(--royal-blue);
+    padding: 80px 24px 24px;
+    overflow-y: auto;
+  }
+  .mobile-panel .nav-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    background: var(--royal-blue);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: linear-gradient(white 1px, transparent 1px),
+                      linear-gradient(90deg, white 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 1024px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    margin-bottom: 32px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.85);
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s ease-out forwards;
+  }
+  .hero h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.25s ease-out forwards;
+  }
+  .hero-subhead {
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    color: rgba(255,255,255,0.85);
+    max-width: 768px;
+    margin: 0 auto 48px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s ease-out forwards;
+  }
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 64px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.55s ease-out forwards;
+  }
+  @media (min-width: 640px) {
+    .hero-stats { flex-direction: row; gap: 40px; }
+  }
+  .hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-stat-icon {
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-stat-text { text-align: left; }
+  .hero-stat-title { font-size: 14px; font-weight: 600; color: white; }
+  .hero-stat-sub { font-size: 12px; color: rgba(255,255,255,0.6); }
+  .hero-stat-divider {
+    display: none;
+    width: 1px;
+    height: 32px;
+    background: rgba(255,255,255,0.2);
+  }
+  @media (min-width: 640px) {
+    .hero-stat-divider { display: block; }
+  }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.7s ease-out forwards;
+    font-family: inherit;
+  }
+  .scroll-indicator:hover { color: rgba(255,255,255,0.8); }
+  .scroll-indicator svg { animation: bounce 2s infinite; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ===== Sections ===== */
+  section {
+    padding: 80px 24px;
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    section { padding: 112px 24px; }
+  }
+  .section-inner {
+    max-width: 1152px;
+    margin: 0 auto;
+  }
+  .section-muted { background: var(--slate-50); }
+  .section-primary { background: var(--royal-blue); color: white; }
+  .section-dark { background: var(--navy-dark); color: white; }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--royal-blue);
+    margin-bottom: 12px;
+  }
+  .section-primary .eyebrow, .section-dark .eyebrow { color: rgba(255,255,255,0.6); }
+
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--royal-blue);
+    margin-bottom: 24px;
+  }
+  .section-primary .section-divider, .section-dark .section-divider { background: rgba(255,255,255,0.4); }
+  .center .section-divider { margin-left: auto; margin-right: auto; }
+
+  h2.section-title {
+    font-size: clamp(1.875rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--slate-900);
+  }
+  .section-primary h2.section-title, .section-dark h2.section-title { color: white; }
+  .section-subtitle {
+    margin-top: 16px;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 768px;
+    color: var(--slate-500);
+  }
+  .section-primary .section-subtitle, .section-dark .section-subtitle { color: rgba(255,255,255,0.75); }
+  .center .section-subtitle, .center.section-title { margin-left: auto; margin-right: auto; }
+  .section-header { margin-bottom: 48px; }
+  @media (min-width: 768px) { .section-header { margin-bottom: 64px; } }
+  .section-header.center { text-align: center; }
+
+  .prose-block {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--slate-700);
+    max-width: 768px;
+  }
+  .prose-block p { margin-bottom: 16px; }
+  .prose-block strong { color: var(--slate-900); font-weight: 600; }
+
+  /* ===== Executive Summary Grid ===== */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 640px) { .exec-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .exec-grid { grid-template-columns: repeat(4, 1fr); } }
+  .exec-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .exec-card:hover {
+    border-color: rgba(0, 51, 102, 0.3);
+    box-shadow: 0 10px 25px -10px rgba(0, 51, 102, 0.15);
+    transform: translateY(-2px);
+  }
+  .exec-card-icon {
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(0, 51, 102, 0.05);
+    color: var(--royal-blue);
+    margin-bottom: 16px;
+    transition: all 0.2s;
+    display: inline-flex;
+  }
+  .exec-card:hover .exec-card-icon {
+    background: var(--royal-blue);
+    color: white;
+  }
+  .exec-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate-900);
+    margin-bottom: 6px;
+  }
+  .exec-card-desc {
+    font-size: 12px;
+    color: var(--slate-500);
+    line-height: 1.5;
+  }
+  .exec-card-arrow {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--slate-300);
+    transition: color 0.2s;
+  }
+  .exec-card:hover .exec-card-arrow { color: var(--royal-blue); }
+
+  /* ===== PE Evaluation Grid ===== */
+  .pe-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+  }
+  @media (min-width: 640px) { .pe-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .pe-grid { grid-template-columns: repeat(4, 1fr); gap: 32px; } }
+  .pe-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .pe-card:hover {
+    border-color: var(--royal-blue);
+    box-shadow: 0 20px 40px -15px rgba(0, 51, 102, 0.15);
+    transform: translateY(-4px);
+  }
+  .pe-card-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    background: var(--slate-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+    color: var(--royal-blue);
+  }
+  .pe-card:hover .pe-card-icon-wrap {
+    background: var(--royal-blue);
+    color: white;
+  }
+  .pe-card h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .pe-card p { font-size: 14px; color: var(--slate-500); line-height: 1.6; margin-bottom: 16px; }
+  .pe-impact {
+    border-top: 1px solid var(--slate-100);
+    padding-top: 16px;
+    margin-top: 16px;
+    display: none;
+  }
+  .pe-card:hover .pe-impact { display: block; }
+  .pe-impact-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--royal-blue);
+    margin-bottom: 8px;
+  }
+  .pe-impact ul { list-style: none; }
+  .pe-impact li {
+    font-size: 12px;
+    color: var(--slate-700);
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .pe-impact li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--royal-blue);
+    font-weight: 700;
+  }
+
+  /* ===== ERISA Risk Accordion ===== */
+  .erisa-list {
+    max-width: 896px;
+    margin: 0 auto 32px;
+  }
+  .erisa-item {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .erisa-item.open {
+    border: 2px solid var(--royal-blue);
+    background: rgba(0, 51, 102, 0.03);
+    box-shadow: 0 10px 30px -10px rgba(0, 51, 102, 0.15);
+  }
+  .erisa-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: inherit;
+  }
+  .erisa-icon-box {
+    flex-shrink: 0;
+    margin-top: 2px;
+    padding: 10px;
+    border-radius: 8px;
+    background: var(--slate-100);
+    color: var(--royal-blue);
+    transition: all 0.3s;
+    display: inline-flex;
+  }
+  .erisa-item.open .erisa-icon-box {
+    background: var(--royal-blue);
+    color: white;
+  }
+  .erisa-text-wrap { flex: 1; min-width: 0; }
+  .erisa-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+  .erisa-item.open .erisa-title { color: var(--royal-blue); }
+  .erisa-brief {
+    font-size: 14px;
+    color: var(--slate-500);
+    line-height: 1.6;
+  }
+  .erisa-content {
+    padding: 8px 24px 24px 76px;
+    display: none;
+  }
+  .erisa-item.open .erisa-content { display: block; }
+  .erisa-section { margin-bottom: 20px; }
+  .erisa-section-head {
+    font-weight: 600;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .erisa-section-head::before {
+    content: "";
+    width: 32px;
+    height: 4px;
+    background: var(--royal-blue);
+    border-radius: 2px;
+  }
+  .erisa-section p {
+    color: var(--slate-700);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  .erisa-impact {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .erisa-impact h4 {
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .erisa-impact p {
+    color: rgba(146, 64, 14, 0.85);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .erisa-case {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .erisa-case h4 {
+    font-weight: 600;
+    color: var(--slate-900);
+    margin-bottom: 12px;
+  }
+  .case-section { margin-bottom: 12px; }
+  .case-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--royal-blue);
+    margin-bottom: 4px;
+  }
+  .case-text {
+    font-size: 14px;
+    color: var(--slate-700);
+    line-height: 1.6;
+  }
+  .case-lesson-wrap {
+    padding-top: 12px;
+    border-top: 1px solid var(--slate-200);
+  }
+  .case-lesson-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--slate-500);
+    margin-bottom: 4px;
+  }
+  .case-lesson-text {
+    font-size: 14px;
+    color: var(--slate-900);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .erisa-summary-callout {
+    max-width: 896px;
+    margin: 32px auto 0;
+    padding: 24px;
+    background: rgba(0, 51, 102, 0.05);
+    border-left: 4px solid var(--royal-blue);
+    border-radius: 0 8px 8px 0;
+  }
+  .erisa-summary-callout p {
+    font-size: 14px;
+    color: var(--slate-700);
+    line-height: 1.7;
+  }
+  .erisa-summary-callout strong {
+    color: var(--royal-blue);
+    font-weight: 600;
+  }
+
+  /* ===== Risk Matrix ===== */
+  .risk-matrix-wrap {
+    margin-top: 48px;
+    max-width: 896px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .risk-matrix-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .risk-matrix-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 51, 102, 0.1);
+    color: var(--royal-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .risk-matrix-header h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+  }
+  .risk-matrix-header p {
+    font-size: 14px;
+    color: var(--slate-500);
+  }
+  .risk-matrix {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .risk-quadrants {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .risk-quad {
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--slate-50);
+  }
+  .risk-quad-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--slate-500);
+    margin-bottom: 12px;
+  }
+  .risk-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 4px 4px 4px 0;
+    color: var(--slate-700);
+  }
+  .risk-pill.priority {
+    background: var(--royal-blue);
+    color: white;
+    border-color: var(--royal-blue);
+  }
+  .risk-pill.medium {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  /* ===== Governance Framework ===== */
+  .gov-framework {
+    margin-top: 32px;
+  }
+  .gov-center {
+    width: fit-content;
+    margin: 0 auto 32px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));
+    color: white;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 10px 30px -10px rgba(0, 51, 102, 0.4);
+    text-align: center;
+  }
+  .gov-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 768px) { .gov-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .gov-grid { grid-template-columns: repeat(5, 1fr); } }
+  .gov-item {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s;
+  }
+  .gov-item:hover {
+    border-color: var(--royal-blue);
+    box-shadow: 0 10px 25px -10px rgba(0, 51, 102, 0.15);
+    transform: translateY(-3px);
+  }
+  .gov-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 51, 102, 0.08);
+    color: var(--royal-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .gov-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .gov-item p {
+    font-size: 12px;
+    color: var(--slate-500);
+    line-height: 1.5;
+  }
+  .gov-metric {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--slate-100);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--royal-blue);
+  }
+  .gov-metric-label {
+    font-size: 10px;
+    color: var(--slate-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+
+  .gov-quote {
+    margin-top: 48px;
+    padding: 24px;
+    border-left: 4px solid var(--royal-blue);
+    max-width: 768px;
+  }
+  .gov-quote blockquote {
+    font-size: 1.125rem;
+    color: var(--slate-700);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .gov-quote cite {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--slate-500);
+    font-style: normal;
+  }
+
+  /* ===== PE Gains Cards ===== */
+  .gains-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  @media (min-width: 768px) { .gains-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+  .gain-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .gain-card:hover {
+    border-color: rgba(0, 51, 102, 0.3);
+    box-shadow: 0 20px 40px -15px rgba(0, 51, 102, 0.15);
+    transform: translateY(-4px);
+  }
+  .gain-card-accent {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--royal-blue), var(--royal-blue-light));
+    border-radius: 12px 12px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gain-card:hover .gain-card-accent { opacity: 1; }
+  .gain-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--slate-100);
+    color: var(--royal-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: all 0.3s;
+  }
+  .gain-card:hover .gain-icon {
+    background: var(--royal-blue);
+    color: white;
+  }
+  .gain-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 12px;
+  }
+  .gain-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(0, 51, 102, 0.1);
+    color: var(--royal-blue);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .gain-card p {
+    font-size: 14px;
+    color: var(--slate-500);
+    line-height: 1.6;
+  }
+
+  /* ===== Dashboard Preview ===== */
+  .dash {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
+  }
+  .dash-header {
+    background: var(--royal-blue);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .dash-title {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .dash-meta {
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+  }
+  .dash-body { padding: 20px; }
+  .dash-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (min-width: 768px) { .dash-metrics { grid-template-columns: repeat(4, 1fr); } }
+  .dash-metric {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .dash-metric-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--slate-500);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dash-metric-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .dash-metric-value.green { color: var(--success); }
+  .dash-metric-value.blue { color: var(--royal-blue); }
+  .dash-metric-value.amber { color: var(--warning); }
+  .dash-metric-suffix {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate-500);
+    margin-left: 4px;
+  }
+  .dash-bar {
+    margin-top: 12px;
+    height: 6px;
+    background: var(--slate-200);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .dash-bar-fill {
+    height: 100%;
+    background: var(--success);
+    border-radius: 3px;
+  }
+  .dash-bar-fill.blue { background: var(--royal-blue); }
+  .dash-quarterly {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .dash-quarterly h4 {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--slate-500);
+    margin-bottom: 12px;
+  }
+  .qtr-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .qtr-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--slate-500);
+    width: 24px;
+  }
+  .qtr-bar-bg {
+    flex: 1;
+    height: 12px;
+    background: var(--slate-200);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .qtr-bar-fill {
+    height: 100%;
+    background: var(--success);
+    border-radius: 999px;
+  }
+  .qtr-value {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--slate-900);
+    width: 32px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .dash-status {
+    margin-top: 20px;
+    background: rgba(0, 51, 102, 0.04);
+    border: 1px solid rgba(0, 51, 102, 0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--slate-500);
+  }
+  .status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .metric-callouts {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  @media (min-width: 640px) { .metric-callouts { flex-direction: row; } }
+  .metric-callout {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid rgba(5, 150, 105, 0.3);
+    border-radius: 8px;
+  }
+  .metric-callout .metric-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--success);
+    line-height: 1;
+  }
+  .metric-callout .metric-text {
+    font-size: 14px;
+    color: var(--slate-700);
+    line-height: 1.6;
+    padding-top: 4px;
+  }
+
+  /* ===== Referral Flow ===== */
+  .flow-list {
+    counter-reset: step;
+  }
+  .flow-step {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+  .flow-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 48px;
+    bottom: 0;
+    width: 2px;
+    background: var(--slate-200);
+  }
+  .flow-num {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--royal-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+    position: relative;
+    z-index: 1;
+  }
+  .flow-content { flex: 1; padding-top: 4px; }
+  .flow-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--royal-blue);
+    margin-bottom: 4px;
+  }
+  .flow-content h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 8px;
+  }
+  .flow-desc {
+    color: var(--slate-500);
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .flow-detail {
+    background: var(--slate-50);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--slate-700);
+    line-height: 1.7;
+  }
+
+  /* ===== EBITDA Flow ===== */
+  .ebitda-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+  @media (min-width: 1024px) {
+    .ebitda-flow {
+      grid-template-columns: auto 1fr auto;
+      gap: 32px;
+    }
+  }
+  .ebitda-source, .ebitda-sink {
+    background: var(--royal-blue);
+    color: white;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 0 10px 25px -10px rgba(0, 51, 102, 0.3);
+  }
+  .ebitda-sink {
+    background: var(--success);
+    box-shadow: 0 10px 25px -10px rgba(5, 150, 105, 0.3);
+  }
+  .ebitda-source-label, .ebitda-sink-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .ebitda-source-main, .ebitda-sink-main {
+    font-size: 1.125rem;
+  }
+  .ebitda-sink-sub {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  .ebitda-mechs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ebitda-mech {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .ebitda-mech:hover {
+    border-color: var(--royal-blue);
+    box-shadow: 0 6px 20px -8px rgba(0, 51, 102, 0.2);
+    transform: translateX(4px);
+  }
+  .ebitda-mech-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 51, 102, 0.1);
+    color: var(--royal-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ebitda-mech-text { flex: 1; }
+  .ebitda-mech h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 2px;
+  }
+  .ebitda-mech p {
+    font-size: 12px;
+    color: var(--slate-500);
+  }
+  .ebitda-mech-impact {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--royal-blue);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ===== Advisor Comparison Table ===== */
+  .compare-wrap {
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 25px -10px rgba(0,0,0,0.05);
+  }
+  .compare-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .compare-head-vendor, .compare-head-partner {
+    padding: 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .compare-head-vendor {
+    background: var(--slate-100);
+    color: var(--slate-500);
+  }
+  .compare-head-partner {
+    background: var(--royal-blue);
+    color: white;
+  }
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--slate-200);
+  }
+  .compare-cell {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .compare-cell-vendor { background: white; }
+  .compare-cell-vendor:nth-of-type(odd) { background: var(--slate-50); }
+  .compare-cell-partner {
+    background: rgba(0, 51, 102, 0.04);
+    border-left: 1px solid var(--slate-200);
+  }
+  .compare-cell-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .compare-cell-vendor .compare-cell-icon {
+    background: var(--slate-200);
+    color: var(--slate-500);
+  }
+  .compare-cell-partner .compare-cell-icon {
+    background: var(--royal-blue);
+    color: white;
+  }
+  .compare-dim {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--slate-500);
+    margin-bottom: 2px;
+  }
+  .compare-text { font-size: 14px; color: var(--slate-700); line-height: 1.4; }
+  .compare-cell-partner .compare-text { color: var(--slate-900); font-weight: 500; }
+
+  /* ===== CTA Section ===== */
+  .cta-section {
+    background: var(--royal-blue);
+    color: white;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .cta-section { padding: 112px 24px; } }
+  .cta-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.15;
+  }
+  .cta-inner { position: relative; max-width: 768px; margin: 0 auto; }
+  .cta-inner h2 {
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .cta-inner p {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: white;
+    color: var(--royal-blue);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .btn-primary:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
+  .cta-contact {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+  }
+  @media (min-width: 640px) { .cta-contact { flex-direction: row; gap: 24px; } }
+  .cta-contact a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cta-contact a:hover { color: rgba(255,255,255,0.9); }
+
+  /* ===== Contact Form ===== */
+  .form-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .form-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+  }
+  .form-card-header {
+    background: var(--slate-50);
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--slate-200);
+  }
+  .form-progress-bar {
+    height: 4px;
+    background: var(--slate-200);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+  .form-progress-fill {
+    height: 100%;
+    background: var(--royal-blue);
+    border-radius: 999px;
+    width: 33%;
+    transition: width 0.5s ease;
+  }
+  .form-step-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--slate-900);
+    margin-bottom: 4px;
+  }
+  .form-card-body { padding: 32px 24px; }
+  @media (min-width: 768px) { .form-card-body { padding: 32px; } }
+  .form-field { margin-bottom: 20px; }
+  .form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--slate-700);
+    margin-bottom: 6px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    transition: all 0.2s;
+    color: var(--slate-900);
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--royal-blue);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.15);
+  }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-card-footer {
+    padding: 20px 24px;
+    border-top: 1px solid var(--slate-200);
+    background: rgba(248, 249, 251, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--royal-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .btn-submit:hover { background: var(--royal-blue-light); }
+  .form-trust {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--slate-500);
+  }
+  .form-trust-divider { color: var(--slate-200); }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--navy-dark);
+    color: rgba(255,255,255,0.6);
+    padding: 48px 24px;
+  }
+  .footer-inner {
+    max-width: 1152px;
+    margin: 0 auto;
+  }
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  @media (min-width: 768px) { .footer-row { flex-direction: row; } }
+  .footer-brand {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 4px;
+  }
+  .footer-tag {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-contact {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  @media (min-width: 768px) { .footer-contact { text-align: right; } }
+  .footer-bottom {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .icon { display: inline-block; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<nav class="sticky-nav" id="stickyNav">
+  <div class="nav-inner">
+    <button class="nav-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+      Top
+    </button>
+    <div class="nav-items">
+      <button class="nav-item" data-section="invisible-risk">Hidden Risk</button>
+      <button class="nav-item" data-section="pe-evaluation">PE Evaluation</button>
+      <button class="nav-item" data-section="erisa-risk">ERISA Risk</button>
+      <button class="nav-item" data-section="governance">Governance</button>
+      <button class="nav-item" data-section="pe-gains">PE Gains</button>
+      <button class="nav-item" data-section="referral-engine">Referral Flow</button>
+      <button class="nav-item" data-section="ebitda">EBITDA Impact</button>
+      <button class="nav-item" data-section="advisor-partnership">Advisor Role</button>
+    </div>
+  </div>
+</nav>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+</button>
+
+<div class="mobile-panel" id="mobilePanel">
+  <div class="mobile-panel-inner">
+    <button class="nav-item" data-section="invisible-risk">Hidden Risk</button>
+    <button class="nav-item" data-section="pe-evaluation">PE Evaluation</button>
+    <button class="nav-item" data-section="erisa-risk">ERISA Risk</button>
+    <button class="nav-item" data-section="governance">Governance</button>
+    <button class="nav-item" data-section="pe-gains">PE Gains</button>
+    <button class="nav-item" data-section="referral-engine">Referral Flow</button>
+    <button class="nav-item" data-section="ebitda">EBITDA Impact</button>
+    <button class="nav-item" data-section="advisor-partnership">Advisor Role</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path></svg>
+      Private Equity Retirement Strategy
+    </div>
+    <h1>Driving EBITDA Stability Through Centralized Retirement Governance</h1>
+    <p class="hero-subhead">Transform retirement plans from hidden risk to strategic value in your PE portfolio</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="hero-stat-text">
+          <div class="hero-stat-title">Risk Mitigation</div>
+          <div class="hero-stat-sub">ERISA compliance</div>
+        </div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+        </div>
+        <div class="hero-stat-text">
+          <div class="hero-stat-title">EBITDA Impact</div>
+          <div class="hero-stat-sub">+$10M typical improvement</div>
+        </div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V7l8-4v18"></path><path d="M19 21V11l-6-4"></path></svg>
+        </div>
+        <div class="hero-stat-text">
+          <div class="hero-stat-title">Centralized</div>
+          <div class="hero-stat-sub">One playbook, one advisor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="scroll-indicator" onclick="document.getElementById('executive-summary').scrollIntoView({behavior:'smooth'})">
+    Explore
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </button>
+</header>
+
+<section id="executive-summary" class="section-muted">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Executive Summary</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Retirement plans are the most overlooked risk in PE portfolios</h2>
+      <p class="section-subtitle">This presentation demonstrates how centralized retirement governance eliminates hidden ERISA liabilities, strengthens exit readiness, and drives measurable EBITDA improvement across your portfolio.</p>
+    </div>
+    <div class="exec-grid reveal">
+      <a class="exec-card" data-jump="invisible-risk">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
+        <h3 class="exec-card-title">The Invisible Risk</h3>
+        <p class="exec-card-desc">Why PE firms overlook retirement plans until they become costly liabilities.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="pe-evaluation">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+        <h3 class="exec-card-title">PE Evaluation Framework</h3>
+        <p class="exec-card-desc">The four criteria PE uses to evaluate everything in their portfolio.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="erisa-risk">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+        <h3 class="exec-card-title">ERISA = Transaction Risk</h3>
+        <p class="exec-card-desc">How ERISA violations create hidden liabilities that threaten deal integrity.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="governance">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></span>
+        <h3 class="exec-card-title">Governance Architecture</h3>
+        <p class="exec-card-desc">Centralized fiduciary framework that standardizes oversight across portfolios.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="pe-gains">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></span>
+        <h3 class="exec-card-title">Immediate PE Gains</h3>
+        <p class="exec-card-desc">One playbook, one advisor, one dashboard for unified portfolio governance.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="referral-engine">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+        <h3 class="exec-card-title">Referral Flow Engine</h3>
+        <p class="exec-card-desc">The five-step advisor referral process that drives systematic engagement.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="ebitda">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></span>
+        <h3 class="exec-card-title">EBITDA Impact</h3>
+        <p class="exec-card-desc">Five mechanisms that translate governance improvements into enterprise value.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+      <a class="exec-card" data-jump="advisor-partnership">
+        <span class="exec-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+        <h3 class="exec-card-title">Strategic Advisor Role</h3>
+        <p class="exec-card-desc">Why the advisor becomes the default referral source and deal-risk mitigator.</p>
+        <span class="exec-card-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="invisible-risk">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">The Challenge</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">The Invisible Risk in Your Portfolio</h2>
+      <p class="section-subtitle">Most PE firms overlook retirement plans until they create problems. Advisors frame conversations around benefits, but PE focuses on transaction risk and exit certainty.</p>
+    </div>
+    <div class="prose-block reveal">
+      <p>Retirement plans remain invisible until inconsistent governance reduces valuation readiness and creates EBITDA drag at exit. Advisors frame conversations around benefits, but PE focuses on <strong>transaction risk</strong> and <strong>exit certainty</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pe-evaluation" class="section-muted">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <div class="eyebrow">Evaluation Criteria</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">How Private Equity Evaluates Everything</h2>
+      <p class="section-subtitle">PE firms assess every initiative through four critical lenses. Retirement plan governance must pass each one.</p>
+    </div>
+    <div class="pe-grid reveal">
+      <div class="pe-card">
+        <div class="pe-card-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h3>Risk</h3>
+        <p>ERISA compliance exposure</p>
+        <div class="pe-impact">
+          <div class="pe-impact-label">Key Considerations</div>
+          <ul>
+            <li>DOL audit exposure</li>
+            <li>Fiduciary breach claims</li>
+            <li>Purchase price adjustments</li>
+            <li>Deal certainty protection</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pe-card">
+        <div class="pe-card-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <h3>Cash Flow Predictability</h3>
+        <p>Cost control and forecasting</p>
+        <div class="pe-impact">
+          <div class="pe-impact-label">Key Considerations</div>
+          <ul>
+            <li>Fee benchmarking and compression</li>
+            <li>Plan design optimization</li>
+            <li>Contribution forecasting accuracy</li>
+            <li>Administrative efficiency gains</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pe-card">
+        <div class="pe-card-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 10v6m11-7h-6m-10 0H1m17.5-7.5l-4.24 4.24m-4.24 4.24l-4.24 4.24m12.72 0l-4.24-4.24m-4.24-4.24L5.86 5.86"></path></svg>
+        </div>
+        <h3>Operational Integration</h3>
+        <p>Portfolio-wide standardization</p>
+        <div class="pe-impact">
+          <div class="pe-impact-label">Key Considerations</div>
+          <ul>
+            <li>Consistent governance protocols</li>
+            <li>Standardized vendor relationships</li>
+            <li>Unified compliance calendars</li>
+            <li>Reduced administrative overhead</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pe-card">
+        <div class="pe-card-icon-wrap">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+        </div>
+        <h3>Exit Readiness</h3>
+        <p>Valuation protection</p>
+        <div class="pe-impact">
+          <div class="pe-impact-label">Key Considerations</div>
+          <ul>
+            <li>Clean due diligence outcomes</li>
+            <li>Enhanced exit narratives</li>
+            <li>Reduced buyer objections</li>
+            <li>Premium valuation multiples</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:40px; text-align:center;">
+      <p style="font-size:14px; color:var(--slate-500); line-height:1.7; max-width:768px; margin:0 auto;">Retirement plan governance must demonstrate value across all four evaluation criteria. A centralized strategy ensures consistent performance in each dimension, transforming plans from hidden risks into managed assets.</p>
+    </div>
+  </div>
+</section>
+
+<section id="erisa-risk">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Risk Analysis</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">ERISA Risk = Transaction Risk</h2>
+      <p class="section-subtitle">For private equity firms, retirement plan compliance isn't merely an operational concern — it's a direct transaction risk that can derail deals and erode enterprise value.</p>
+    </div>
+    <div class="prose-block reveal" style="margin-bottom:48px;">
+      <p>ERISA violations create hidden liabilities that surface during due diligence, forcing corrective actions that delay closings, trigger purchase price adjustments, or worse, cause deals to collapse entirely. Five critical risk areas threaten transaction certainty and valuation integrity.</p>
+    </div>
+
+    <div class="erisa-list reveal">
+      <div class="erisa-item">
+        <button class="erisa-trigger" onclick="toggleErisa(this)">
+          <span class="erisa-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </span>
+          <div class="erisa-text-wrap">
+            <div class="erisa-title">Late Deferrals</div>
+            <div class="erisa-brief">Timing failures in employee contributions create DOL exposure and fiduciary breach claims.</div>
+          </div>
+        </button>
+        <div class="erisa-content">
+          <div class="erisa-section">
+            <div class="erisa-section-head">Detailed Explanation</div>
+            <p>When employee 401(k) contributions are not deposited into plan accounts promptly, it constitutes a prohibited transaction under ERISA. The Department of Labor requires deferrals to be deposited as soon as they can reasonably be segregated from company assets — typically within 2-7 business days. Delays beyond this window trigger automatic fiduciary breach liability, interest calculations, and potential civil penalties.</p>
+          </div>
+          <div class="erisa-impact">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Financial Impact
+            </h4>
+            <p>Typical exposure ranges from $50,000 to $500,000 per occurrence, including lost earnings restoration, DOL penalties, and correction program fees. Repeated violations can trigger formal investigations and multiply penalties.</p>
+          </div>
+          <div class="erisa-case" style="margin-top:16px;">
+            <h4>Case Study: Real-World Impact</h4>
+            <div class="case-section">
+              <div class="case-label">Scenario</div>
+              <div class="case-text">A manufacturing portfolio company with 450 employees consistently deposited deferrals 14-21 days late due to payroll system integration issues.</div>
+            </div>
+            <div class="case-section">
+              <div class="case-label">Outcome</div>
+              <div class="case-text">During buyer due diligence, the issue surfaced in a VCP filing requirement worth $180,000 in lost earnings, plus $75,000 in professional fees. The purchase price was adjusted by $325,000 to account for the unreported liability.</div>
+            </div>
+            <div class="case-lesson-wrap">
+              <div class="case-lesson-label">Key Lesson</div>
+              <div class="case-lesson-text">Late deferral issues discovered during due diligence create immediate valuation drag and delay closing timelines by 30-60 days while corrections are processed.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="erisa-item">
+        <button class="erisa-trigger" onclick="toggleErisa(this)">
+          <span class="erisa-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </span>
+          <div class="erisa-text-wrap">
+            <div class="erisa-title">Eligibility Failures</div>
+            <div class="erisa-brief">Incorrect plan participation determinations result in retroactive contributions and potential class action liability.</div>
+          </div>
+        </button>
+        <div class="erisa-content">
+          <div class="erisa-section">
+            <div class="erisa-section-head">Detailed Explanation</div>
+            <p>Misclassifying employees as ineligible for plan participation — due to incorrect age/service calculations, misunderstanding temporary/seasonal worker rules, or failing to track eligibility after status changes — creates significant exposure. Affected employees must be made whole through retroactive employer contributions, including match and profit sharing they should have received, plus lost earnings.</p>
+          </div>
+          <div class="erisa-impact">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Financial Impact
+            </h4>
+            <p>Correction costs typically range from $100,000 to $2 million depending on the number of affected participants and duration of exclusion. Class action lawsuits from systematically excluded groups can exceed $5 million in settlements.</p>
+          </div>
+          <div class="erisa-case" style="margin-top:16px;">
+            <h4>Case Study: Real-World Impact</h4>
+            <div class="case-section">
+              <div class="case-label">Scenario</div>
+              <div class="case-text">A healthcare services company incorrectly excluded part-time employees who worked over 1,000 hours annually, affecting approximately 85 employees over a four-year period.</div>
+            </div>
+            <div class="case-section">
+              <div class="case-label">Outcome</div>
+              <div class="case-text">The company faced $450,000 in retroactive employer contributions, $120,000 in lost earnings, and $200,000 in legal and actuarial fees to quantify and correct the failure through the IRS correction program.</div>
+            </div>
+            <div class="case-lesson-wrap">
+              <div class="case-lesson-label">Key Lesson</div>
+              <div class="case-lesson-text">Systematic eligibility errors compound over time and create exponentially larger correction costs. Real-time eligibility monitoring prevents multi-year accumulation of liability.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="erisa-item">
+        <button class="erisa-trigger" onclick="toggleErisa(this)">
+          <span class="erisa-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 10v6m11-7h-6m-10 0H1"></path></svg>
+          </span>
+          <div class="erisa-text-wrap">
+            <div class="erisa-title">Controlled Group Errors</div>
+            <div class="erisa-brief">Misidentification of affiliated entities leads to plan aggregation issues and multiplied compliance obligations.</div>
+          </div>
+        </button>
+        <div class="erisa-content">
+          <div class="erisa-section">
+            <div class="erisa-section-head">Detailed Explanation</div>
+            <p>Under ERISA and the Internal Revenue Code, companies under common control are treated as a single employer for retirement plan purposes. Failing to identify controlled group relationships — whether through common ownership, parent-subsidiary structures, or brother-sister affiliations — results in incorrect coverage testing, contribution limit failures, and potentially disqualified plans. This issue frequently surfaces in PE portfolios with multiple related entities.</p>
+          </div>
+          <div class="erisa-impact">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Financial Impact
+            </h4>
+            <p>Correction costs range from $200,000 to over $3 million, depending on the complexity of the controlled group structure and the number of plans involved. Failed coverage testing can require retroactive contributions to non-highly compensated employees across all related entities.</p>
+          </div>
+          <div class="erisa-case" style="margin-top:16px;">
+            <h4>Case Study: Real-World Impact</h4>
+            <div class="case-section">
+              <div class="case-label">Scenario</div>
+              <div class="case-text">A PE firm acquired three related companies but failed to recognize they formed a brother-sister controlled group due to overlapping ownership structures. Each company operated separate 401(k) plans with different eligibility rules.</div>
+            </div>
+            <div class="case-section">
+              <div class="case-label">Outcome</div>
+              <div class="case-text">Coverage testing failures required $850,000 in retroactive employer contributions to bring excluded employees into compliance. Additionally, the firm faced $400,000 in professional fees and a 12-month delay in plan consolidation initiatives.</div>
+            </div>
+            <div class="case-lesson-wrap">
+              <div class="case-lesson-label">Key Lesson</div>
+              <div class="case-lesson-text">PE acquisitions trigger immediate controlled group analysis requirements. Proactive identification during due diligence prevents post-close surprises and enables strategic plan design.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="erisa-item">
+        <button class="erisa-trigger" onclick="toggleErisa(this)">
+          <span class="erisa-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </span>
+          <div class="erisa-text-wrap">
+            <div class="erisa-title">Missing Plan Amendments</div>
+            <div class="erisa-brief">Failure to adopt required plan document updates creates plan disqualification risk.</div>
+          </div>
+        </button>
+        <div class="erisa-content">
+          <div class="erisa-section">
+            <div class="erisa-section-head">Detailed Explanation</div>
+            <p>The IRS requires retirement plans to be amended for legislative changes, regulatory updates, and operational modifications within specific deadlines. Missing required amendments — such as SECURE Act provisions, CARES Act distributions, or annual IRS-required language updates — places the plan's tax-qualified status at risk. Disqualification would trigger immediate taxation of all plan benefits and loss of employer deduction for contributions.</p>
+          </div>
+          <div class="erisa-impact">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Financial Impact
+            </h4>
+            <p>While plan disqualification is rare, the risk exposure is catastrophic — potentially tens of millions in immediate tax liability across all participants. More commonly, missing amendments discovered during audits result in $50,000-$300,000 in legal fees, document restatement costs, and VCP filing fees.</p>
+          </div>
+          <div class="erisa-case" style="margin-top:16px;">
+            <h4>Case Study: Real-World Impact</h4>
+            <div class="case-section">
+              <div class="case-label">Scenario</div>
+              <div class="case-text">A technology portfolio company failed to adopt required SECURE Act amendments by the 2022 deadline and continued operating under outdated plan provisions for hardship distributions and required minimum distributions.</div>
+            </div>
+            <div class="case-section">
+              <div class="case-label">Outcome</div>
+              <div class="case-text">During a routine IRS audit, the missing amendments were identified. The company paid $95,000 in legal fees to prepare a VCP submission, $25,000 in IRS user fees, and implemented $140,000 in corrective distributions to affected participants.</div>
+            </div>
+            <div class="case-lesson-wrap">
+              <div class="case-lesson-label">Key Lesson</div>
+              <div class="case-lesson-text">Systematic amendment tracking and quarterly compliance calendars ensure legislative changes are adopted timely. Document service providers should be contractually obligated to deliver required amendments automatically.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="erisa-item">
+        <button class="erisa-trigger" onclick="toggleErisa(this)">
+          <span class="erisa-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 11l4-4-7-7-4 4"></path><path d="M3 21l7-7 4 4-7 7H3v-4z"></path><path d="M14.5 6.5L17 4l3 3-2.5 2.5"></path></svg>
+          </span>
+          <div class="erisa-text-wrap">
+            <div class="erisa-title">Fee Litigation Exposure</div>
+            <div class="erisa-brief">Inadequate fee benchmarking and fiduciary oversight invite participant lawsuits and seven-figure settlements.</div>
+          </div>
+        </button>
+        <div class="erisa-content">
+          <div class="erisa-section">
+            <div class="erisa-section-head">Detailed Explanation</div>
+            <p>Plan fiduciaries have a legal duty to ensure retirement plan fees are reasonable relative to services provided. Failure to conduct regular fee benchmarking, document investment due diligence, or negotiate fee reductions as plan assets grow creates litigation vulnerability. The plaintiff's bar actively targets plans with above-median fees, revenue sharing arrangements, or inadequate fiduciary documentation.</p>
+          </div>
+          <div class="erisa-impact">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              Financial Impact
+            </h4>
+            <p>Excessive fee lawsuits typically settle for $1 million to $15 million, with defense costs adding another $500,000 to $3 million. Even successful defenses cost $750,000+ in legal fees and create multi-year management distraction.</p>
+          </div>
+          <div class="erisa-case" style="margin-top:16px;">
+            <h4>Case Study: Real-World Impact</h4>
+            <div class="case-section">
+              <div class="case-label">Scenario</div>
+              <div class="case-text">A mid-sized portfolio company with a $45 million 401(k) plan had never conducted formal fee benchmarking. Total plan costs were 1.35% annually — approximately 45 basis points above comparable plans — costing participants approximately $200,000 per year in excess fees.</div>
+            </div>
+            <div class="case-section">
+              <div class="case-label">Outcome</div>
+              <div class="case-text">Three years after acquisition, participants filed an ERISA lawsuit alleging fiduciary breach. The case settled for $2.4 million, representing three years of alleged excess fees plus prejudgment interest. Defense costs totaled an additional $650,000.</div>
+            </div>
+            <div class="case-lesson-wrap">
+              <div class="case-lesson-label">Key Lesson</div>
+              <div class="case-lesson-text">Annual fee benchmarking with documented fiduciary analysis costs $15,000-$25,000 and provides strong litigation defense. The cost-benefit ratio is overwhelmingly favorable compared to potential exposure.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="erisa-summary-callout reveal">
+      <p><strong>Proactive Risk Management:</strong> Each of these risk factors is preventable through systematic governance, regular compliance audits, and centralized oversight. The cost of prevention is measured in thousands; the cost of correction is measured in hundreds of thousands or millions.</p>
+    </div>
+
+    <div class="risk-matrix-wrap reveal">
+      <div class="risk-matrix-header">
+        <div class="risk-matrix-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        </div>
+        <div>
+          <h3>ERISA Risk Factor Matrix</h3>
+          <p>Impact severity vs. occurrence frequency across portfolio</p>
+        </div>
+      </div>
+      <div class="risk-matrix">
+        <div class="risk-quadrants">
+          <div class="risk-quad">
+            <div class="risk-quad-label">High Frequency / Lower Impact</div>
+            <span class="risk-pill priority">Late Deferrals</span>
+            <span class="risk-pill">Missing Amendments</span>
+          </div>
+          <div class="risk-quad">
+            <div class="risk-quad-label">High Frequency / High Impact</div>
+            <span class="risk-pill priority">Eligibility Failures</span>
+          </div>
+          <div class="risk-quad">
+            <div class="risk-quad-label">Lower Frequency / Lower Impact</div>
+            <span class="risk-pill medium">Administrative gaps</span>
+          </div>
+          <div class="risk-quad">
+            <div class="risk-quad-label">Lower Frequency / Catastrophic Impact</div>
+            <span class="risk-pill priority">Fee Litigation</span>
+            <span class="risk-pill priority">Controlled Group Errors</span>
+          </div>
+        </div>
+        <p style="font-size:12px; color:var(--slate-500); text-align:center; padding-top:8px; border-top:1px solid var(--slate-100);">
+          <strong style="color:var(--royal-blue);">Key Insight:</strong> Fee Litigation carries the highest impact severity while Late Deferrals occur most frequently — both demand proactive governance to protect transaction value.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="governance" class="section-muted">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">The Solution</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Centralized Governance Architecture for PE Platforms</h2>
+      <p class="section-subtitle">The solution to ERISA risk isn't more oversight — it's better structure. A centralized governance architecture transforms fragmented retirement plan management into a unified, scalable system.</p>
+    </div>
+
+    <div class="gov-framework reveal">
+      <div class="gov-center">PE Operating Partner — Central Hub</div>
+      <div class="gov-grid">
+        <div class="gov-item">
+          <div class="gov-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h4>Standardized Fiduciary Committee Framework</h4>
+          <p>Templated charters, unified documentation standards, and enterprise-wide role definitions.</p>
+          <div class="gov-metric">100%</div>
+          <div class="gov-metric-label">Portfolio Standardization</div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <h4>Quarterly Governance Cadence</h4>
+          <p>Synchronized review calendar, performance monitoring, and compliance audits.</p>
+          <div class="gov-metric">4×</div>
+          <div class="gov-metric-label">Annual Review Cycles</div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+          <h4>Advisor-Led Investment Monitoring</h4>
+          <p>Single advisor relationship providing institutional-quality investment oversight with IPS structure.</p>
+          <div class="gov-metric">1</div>
+          <div class="gov-metric-label">Unified Advisor Relationship</div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          </div>
+          <h4>Unified Compliance Cycle</h4>
+          <p>Centralized deadline tracking, Form 5500 coordination, and color-coded compliance dashboards.</p>
+          <div class="gov-metric">95%</div>
+          <div class="gov-metric-label">On-Time Compliance</div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          </div>
+          <h4>Annual Plan Consolidation Assessment</h4>
+          <p>Plan merger feasibility, design standardization, and EBITDA lift quantification.</p>
+          <div class="gov-metric">23bps</div>
+          <div class="gov-metric-label">Avg. Fee Reduction</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gov-quote reveal">
+      <blockquote>"All retirement plans centralized and under control."</blockquote>
+      <cite>The governance framework transforms retirement plans from hidden liabilities into managed assets that support value creation objectives.</cite>
+    </div>
+  </div>
+</section>
+
+<section id="pe-gains">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Immediate Value</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">What PE Gains Immediately</h2>
+      <p class="section-subtitle">Operating partners gain immediate value through three integrated solutions that transform retirement plan oversight from fragmented liability into strategic advantage.</p>
+    </div>
+
+    <div class="gains-grid reveal">
+      <div class="gain-card">
+        <div class="gain-card-accent"></div>
+        <div class="gain-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        </div>
+        <h3>One Playbook</h3>
+        <span class="gain-badge">Standardized governance</span>
+        <p>Consistent standards across the entire portfolio eliminate operational variance. Every portfolio company operates under identical fiduciary frameworks, compliance calendars, and governance protocols.</p>
+      </div>
+      <div class="gain-card">
+        <div class="gain-card-accent"></div>
+        <div class="gain-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <h3>One Advisor</h3>
+        <span class="gain-badge">Unified leadership</span>
+        <p>Single point of oversight replaces fragmented vendor relationships. The advisor serves as quarterback across all entities, ensuring unified strategy execution and eliminating coordination costs.</p>
+      </div>
+      <div class="gain-card">
+        <div class="gain-card-accent"></div>
+        <div class="gain-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+        </div>
+        <h3>One Dashboard</h3>
+        <span class="gain-badge">Complete visibility</span>
+        <p>Unified compliance and risk reporting provides portfolio-wide visibility. Quarterly dashboards summarize compliance status, fee benchmarks, and risk exposure across all retirement plans in a single view.</p>
+      </div>
+    </div>
+
+    <div class="dash reveal">
+      <div class="dash-header">
+        <div class="dash-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+          Portfolio Compliance Dashboard
+        </div>
+        <div class="dash-meta">Last updated: Feb 2026</div>
+      </div>
+      <div class="dash-body">
+        <div class="dash-metrics">
+          <div class="dash-metric">
+            <div class="dash-metric-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Compliant Plans
+            </div>
+            <div><span class="dash-metric-value green">18</span><span class="dash-metric-suffix">/20</span></div>
+            <div class="dash-bar"><div class="dash-bar-fill" style="width:90%"></div></div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--royal-blue)" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>
+              Avg Fee Reduction
+            </div>
+            <div><span class="dash-metric-value blue">23</span><span class="dash-metric-suffix">bps</span></div>
+            <div class="dash-bar"><div class="dash-bar-fill blue" style="width:75%"></div></div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+              Open Issues
+            </div>
+            <div><span class="dash-metric-value amber">2</span></div>
+            <div style="margin-top:12px;">
+              <span style="display:inline-block; padding:2px 8px; border-radius:999px; background:#fef3c7; color:#92400e; font-size:10px; font-weight:500; margin-right:4px;">1 Medium</span>
+              <span style="display:inline-block; padding:2px 8px; border-radius:999px; background:#fff7ed; color:#c2410c; font-size:10px; font-weight:500;">1 Low</span>
+            </div>
+          </div>
+          <div class="dash-metric">
+            <div class="dash-metric-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--royal-blue)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Governance Score
+            </div>
+            <div><span class="dash-metric-value blue">94</span><span class="dash-metric-suffix">/100</span></div>
+            <div class="dash-bar"><div class="dash-bar-fill blue" style="width:94%"></div></div>
+          </div>
+        </div>
+
+        <div class="dash-quarterly">
+          <h4>Quarterly Compliance Trend</h4>
+          <div class="qtr-row"><span class="qtr-label">Q1</span><div class="qtr-bar-bg"><div class="qtr-bar-fill" style="width:85%; background:var(--royal-blue);"></div></div><span class="qtr-value">85%</span></div>
+          <div class="qtr-row"><span class="qtr-label">Q2</span><div class="qtr-bar-bg"><div class="qtr-bar-fill" style="width:88%; background:var(--royal-blue);"></div></div><span class="qtr-value">88%</span></div>
+          <div class="qtr-row"><span class="qtr-label">Q3</span><div class="qtr-bar-bg"><div class="qtr-bar-fill" style="width:92%;"></div></div><span class="qtr-value">92%</span></div>
+          <div class="qtr-row"><span class="qtr-label">Q4</span><div class="qtr-bar-bg"><div class="qtr-bar-fill" style="width:90%;"></div></div><span class="qtr-value">90%</span></div>
+        </div>
+
+        <div class="dash-status">
+          <div><span class="status-dot"></span>All systems operational</div>
+          <div>
+            <span style="margin-right:16px;">Next quarterly review: <strong style="color:var(--slate-900);">Apr 15, 2026</strong></span>
+            <span>Portfolio companies: <strong style="color:var(--slate-900);">20</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metric-callouts reveal">
+      <div class="metric-callout">
+        <div class="metric-num">75%</div>
+        <div class="metric-text">Reduction in plan administration complexity</div>
+      </div>
+      <div class="metric-callout">
+        <div class="metric-num">90%</div>
+        <div class="metric-text">Improvement in compliance tracking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="referral-engine" class="section-muted">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <div class="eyebrow">Engagement Model</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Advisor Referral Flow Engine</h2>
+      <p class="section-subtitle">The referral process transforms advisors into strategic partners through a systematic five-step engagement model.</p>
+    </div>
+
+    <div class="flow-list reveal" style="max-width:768px; margin:0 auto;">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <div class="flow-label">Step 1</div>
+          <h3>PE Informs Advisor</h3>
+          <p class="flow-desc">PE firm notifies advisor of new acquisition or portfolio company review trigger.</p>
+          <div class="flow-detail">The process begins when a PE operating partner identifies a new acquisition target or triggers a periodic portfolio company review. The advisor is brought in at the earliest stage to ensure retirement plan risk is evaluated alongside other due diligence workstreams.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <div class="flow-label">Step 2</div>
+          <h3>Advisor Conducts Intake</h3>
+          <p class="flow-desc">Advisor performs initial retirement plan assessment and stakeholder interviews.</p>
+          <div class="flow-detail">The advisor conducts structured intake interviews with key stakeholders including HR directors, CFOs, and existing plan administrators. This phase maps the current plan landscape, identifies immediate red flags, and establishes the baseline for comprehensive analysis.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <div class="flow-label">Step 3</div>
+          <h3>Deep Plan Analysis</h3>
+          <p class="flow-desc">Comprehensive analysis covers plan documents, compliance history, fee structures, and governance frameworks.</p>
+          <div class="flow-detail">A thorough forensic review examines plan documents, compliance testing results, Form 5500 filings, fee benchmarking data, and existing governance structures. Every controlled group relationship is mapped and validated. The analysis uncovers hidden liabilities that could impact transaction valuation.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <div class="flow-label">Step 4</div>
+          <h3>Unified Scorecard Presentation</h3>
+          <p class="flow-desc">Advisor presents findings to PE operating partners and portfolio CFO/HR using standardized scorecard format.</p>
+          <div class="flow-detail">Findings are consolidated into a standardized scorecard that PE operating partners can evaluate consistently across all portfolio companies. The scorecard quantifies risk exposure, identifies cost optimization opportunities, and provides a clear roadmap for governance improvements with projected EBITDA impact.</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <div class="flow-label">Step 5</div>
+          <h3>Default Quarterback Role</h3>
+          <p class="flow-desc">Advisor becomes ongoing retirement plan quarterback across the portfolio, ensuring continuous oversight and optimization.</p>
+          <div class="flow-detail">The advisor assumes the permanent role of retirement plan quarterback, providing centralized oversight, quarterly governance cadence management, and continuous compliance monitoring across the entire portfolio. This single relationship eliminates fragmentation and ensures institutional-quality governance through the hold period and into exit.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ebitda">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Value Creation</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">How This Increases EBITDA</h2>
+      <p class="section-subtitle">The centralized strategy directly impacts enterprise value through five measurable mechanisms that flow to EBITDA.</p>
+    </div>
+
+    <div class="ebitda-flow reveal">
+      <div class="ebitda-source">
+        <div class="ebitda-source-label">Source</div>
+        <div class="ebitda-source-main">Centralized Retirement Strategy</div>
+      </div>
+
+      <div class="ebitda-mechs">
+        <div class="ebitda-mech">
+          <div class="ebitda-mech-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+          <div class="ebitda-mech-text">
+            <h4>Cleaner Operations</h4>
+            <p>Reduced audit findings and corrective contributions</p>
+          </div>
+          <div class="ebitda-mech-impact">$1.5–3M</div>
+        </div>
+        <div class="ebitda-mech">
+          <div class="ebitda-mech-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></div>
+          <div class="ebitda-mech-text">
+            <h4>Reduced Liability</h4>
+            <p>Lower cost of risk at exit, premium valuations</p>
+          </div>
+          <div class="ebitda-mech-impact">$2–5M</div>
+        </div>
+        <div class="ebitda-mech">
+          <div class="ebitda-mech-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
+          <div class="ebitda-mech-text">
+            <h4>Optimized Plan Design</h4>
+            <p>Better retention reduces hiring churn costs</p>
+          </div>
+          <div class="ebitda-mech-impact">$1–2M</div>
+        </div>
+        <div class="ebitda-mech">
+          <div class="ebitda-mech-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg></div>
+          <div class="ebitda-mech-text">
+            <h4>Fee Compression</h4>
+            <p>Portfolio-wide purchasing power savings</p>
+          </div>
+          <div class="ebitda-mech-impact">$500K–1.5M</div>
+        </div>
+        <div class="ebitda-mech">
+          <div class="ebitda-mech-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg></div>
+          <div class="ebitda-mech-text">
+            <h4>Strengthened PE Narrative</h4>
+            <p>Institutional governance enhances exit story</p>
+          </div>
+          <div class="ebitda-mech-impact">0.5–1.0× multiple</div>
+        </div>
+      </div>
+
+      <div class="ebitda-sink">
+        <div class="ebitda-sink-label">Result</div>
+        <div class="ebitda-sink-main">Increased EBITDA</div>
+        <div class="ebitda-sink-sub">+$10M typical</div>
+      </div>
+    </div>
+
+    <div class="metric-callouts reveal" style="margin-top:32px;">
+      <div class="metric-callout">
+        <div class="metric-num">+$10M</div>
+        <div class="metric-text">Typical EBITDA improvement from centralized retirement strategy implementation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="advisor-partnership" class="section-muted">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Strategic Partnership</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Your Trusted Advisor as Deal-Risk Mitigator</h2>
+      <p class="section-subtitle">Your retirement plan advisor should not be viewed as a vendor — they should be your strategic partner in protecting deal integrity and enhancing portfolio company performance.</p>
+    </div>
+
+    <div class="compare-wrap reveal">
+      <div class="compare-head">
+        <div class="compare-head-vendor">Traditional Vendor</div>
+        <div class="compare-head-partner">Strategic Partner</div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell compare-cell-vendor">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+          <div>
+            <div class="compare-dim">Relationship Model</div>
+            <div class="compare-text">Transactional vendor engagement</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-cell-partner">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+          <div>
+            <div class="compare-dim">Relationship Model</div>
+            <div class="compare-text">Strategic advisor partnership</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell compare-cell-vendor">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg></div>
+          <div>
+            <div class="compare-dim">Risk Approach</div>
+            <div class="compare-text">Reactive compliance fixes</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-cell-partner">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+          <div>
+            <div class="compare-dim">Risk Approach</div>
+            <div class="compare-text">Proactive governance architecture</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell compare-cell-vendor">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+          <div>
+            <div class="compare-dim">Oversight Scope</div>
+            <div class="compare-text">Single-entity management</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-cell-partner">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+          <div>
+            <div class="compare-dim">Oversight Scope</div>
+            <div class="compare-text">Portfolio-wide centralized control</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell compare-cell-vendor">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></div>
+          <div>
+            <div class="compare-dim">Reporting</div>
+            <div class="compare-text">Fragmented, inconsistent data</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-cell-partner">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></div>
+          <div>
+            <div class="compare-dim">Reporting</div>
+            <div class="compare-text">Unified compliance dashboard</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell compare-cell-vendor">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <div>
+            <div class="compare-dim">Investment Monitoring</div>
+            <div class="compare-text">Ad-hoc fund reviews</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-cell-partner">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+          <div>
+            <div class="compare-dim">Investment Monitoring</div>
+            <div class="compare-text">Institutional IPS-driven oversight</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-row">
+        <div class="compare-cell compare-cell-vendor">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>
+          <div>
+            <div class="compare-dim">Exit Impact</div>
+            <div class="compare-text">Liability discovered at diligence</div>
+          </div>
+        </div>
+        <div class="compare-cell compare-cell-partner">
+          <div class="compare-cell-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg></div>
+          <div>
+            <div class="compare-dim">Exit Impact</div>
+            <div class="compare-text">Strengthened valuation narrative</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="metric-callouts reveal" style="margin-top:32px;">
+      <div class="metric-callout">
+        <div class="metric-num">80%</div>
+        <div class="metric-text">Reduction in compliance coordination time</div>
+      </div>
+      <div class="metric-callout">
+        <div class="metric-num">100%</div>
+        <div class="metric-text">Portfolio coverage with single relationship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="take-action">
+  <div class="cta-inner">
+    <h2 class="reveal">Strengthen Your Portfolio's Retirement Plan Governance</h2>
+    <p class="reveal">Ready to centralize your retirement plan strategy and eliminate hidden risks across your portfolio? Connect with our team to evaluate your current retirement plan landscape and identify immediate opportunities for risk reduction and operational improvement.</p>
+    <a href="mailto:partnerships@retirementstrategy.com" class="btn-primary reveal">
+      Schedule a Portfolio Assessment
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+    <div class="cta-contact reveal">
+      <a href="mailto:partnerships@retirementstrategy.com">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        partnerships@retirementstrategy.com
+      </a>
+      <a href="tel:5551234567">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        (555) 123-4567
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <div class="eyebrow">Get Started</div>
+      <div class="section-divider"></div>
+      <h2 class="section-title">Schedule a Portfolio Assessment</h2>
+      <p class="section-subtitle">Connect with our team to evaluate your current retirement plan landscape and identify immediate opportunities.</p>
+    </div>
+
+    <div class="form-wrap reveal">
+      <div class="form-card">
+        <div class="form-card-header">
+          <div class="form-step-label">Your Information</div>
+          <div style="font-size:12px; color:var(--slate-500);">Complete the form below — we'll respond within one business day</div>
+          <div class="form-progress-bar"><div class="form-progress-fill" id="formProgress" style="width:100%"></div></div>
+        </div>
+        <form class="form-card-body" onsubmit="handleFormSubmit(event)">
+          <div class="form-field">
+            <label for="form-name">Full Name</label>
+            <input type="text" id="form-name" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="form-field">
+            <label for="form-firm">Firm / Company</label>
+            <input type="text" id="form-firm" name="firm" placeholder="Apex Capital Partners" required>
+          </div>
+          <div class="form-field">
+            <label for="form-email">Email Address</label>
+            <input type="email" id="form-email" name="email" placeholder="john@apexcapital.com" required>
+          </div>
+          <div class="form-field">
+            <label for="form-phone">Phone (optional)</label>
+            <input type="tel" id="form-phone" name="phone" placeholder="(555) 123-4567">
+          </div>
+          <div class="form-field">
+            <label for="form-portfolio">Portfolio Size (AUM)</label>
+            <select id="form-portfolio" name="portfolio" required>
+              <option value="">Select portfolio size</option>
+              <option>Under $100M</option>
+              <option>$100M - $500M</option>
+              <option>$500M - $1B</option>
+              <option>$1B - $5B</option>
+              <option>Over $5B</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="form-message">Message (optional)</label>
+            <textarea id="form-message" name="message" placeholder="Tell us about your current retirement plan landscape or specific challenges..."></textarea>
+          </div>
+          <div class="form-card-footer" style="border-top:1px solid var(--slate-200); margin-top:24px; padding:20px 0 0;">
+            <button type="submit" class="btn-submit">
+              Submit Request
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="form-trust">
+        <div style="display:flex; align-items:center; gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          ERISA-Qualified Advisors
+        </div>
+        <span class="form-trust-divider">|</span>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Data Protected
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div>
+        <div class="footer-brand">PE Retirement Strategy</div>
+        <div class="footer-tag">Centralized Governance for Portfolio Excellence</div>
+      </div>
+      <div class="footer-contact">
+        partnerships@retirementstrategy.com | (555) 123-4567
+      </div>
+    </div>
+    <div class="footer-bottom">
+      All rights reserved. © 2026 Executive Retirement Services, LLC.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const stickyNav = document.getElementById('stickyNav');
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      stickyNav.classList.add('visible');
+      mobileToggle.classList.add('visible');
+    } else {
+      stickyNav.classList.remove('visible');
+      mobileToggle.classList.remove('visible');
+    }
+  });
+
+  mobileToggle.addEventListener('click', () => {
+    mobilePanel.classList.toggle('open');
+  });
+
+  mobilePanel.addEventListener('click', (e) => {
+    if (e.target === mobilePanel) mobilePanel.classList.remove('open');
+  });
+
+  document.querySelectorAll('[data-section], [data-jump]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.section || btn.dataset.jump;
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+        mobilePanel.classList.remove('open');
+      }
+    });
+  });
+
+  const sectionIds = ['invisible-risk','pe-evaluation','erisa-risk','governance','pe-gains','referral-engine','ebitda','advisor-partnership'];
+  const navItems = document.querySelectorAll('.nav-items .nav-item');
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+    if (visible.length > 0) {
+      const id = visible[0].target.id;
+      navItems.forEach(item => {
+        item.classList.toggle('active', item.dataset.section === id);
+      });
+    }
+  }, { threshold: 0.2, rootMargin: '-80px 0px -40% 0px' });
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  function toggleErisa(trigger) {
+    const item = trigger.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.erisa-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('form-name').value.split(' ')[0] || 'there';
+    alert(`Thank you, ${name}! Your portfolio assessment request has been received. A member of our team will reach out within one business day.`);
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
